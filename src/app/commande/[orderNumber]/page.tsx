@@ -69,21 +69,25 @@ export default function GuestOrderPage() {
   }
 
   const whatsappMessage = encodeURIComponent(
-    `Bonjour, je viens d'effectuer le paiement pour la commande ${order.order_number} (${order.total} FCFA). Voici ma preuve de paiement :`
+    "Bonjour, je viens d'effectuer le paiement pour la commande " +
+      order.order_number +
+      " (" +
+      order.total +
+      " FCFA). Voici ma preuve de paiement :"
   );
-  const whatsappUrl = `${WHATSAPP_LINK}?text=${whatsappMessage}`;
+  const whatsappUrl = WHATSAPP_LINK + "?text=" + whatsappMessage;
 
   return (
     <main className="max-w-2xl mx-auto px-4 py-10">
       <div className="bg-white border border-ink-200 rounded-2xl p-8">
         <h1 className="text-2xl font-bold text-ink-900 mb-2">
-          {order.status === "paid" ? "Commande payée" : "Commande enregistrée"}
+          {order.status === "paid" ? "Commande payee" : "Commande enregistree"}
         </h1>
         <p className="text-ink-500 mb-6">
-          Numéro de commande :{" "}
+          Numero de commande :{" "}
           <strong className="text-ink-900">{order.order_number}</strong>
           <br />
-          Conservez précieusement ce numéro, il vous permettra de retrouver
+          Conservez precieusement ce numero, il vous permettra de retrouver
           votre commande.
         </p>
 
@@ -106,8 +110,8 @@ export default function GuestOrderPage() {
                   className="bg-brand-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-700 transition-colors disabled:opacity-50"
                 >
                   {downloadingId === item.product_id
-                    ? "Génération..."
-                    : "Télécharger"}
+                    ? "Generation..."
+                    : "Telecharger"}
                 </button>
               )}
             </div>
@@ -125,11 +129,10 @@ export default function GuestOrderPage() {
             </h2>
             <ol className="list-decimal list-inside text-sm text-ink-700 space-y-2">
               <li>
-                Effectuez un dépôt de <strong>{order.total} FCFA</strong> via :
+                Effectuez un depot de <strong>{order.total} FCFA</strong> via :
                 <ul className="list-disc list-inside ml-4 mt-1">
                   <li>
-                    Wave :{" "}
-                    <strong className="text-ink-900">{WAVE_NUMBER}</strong>
+                    Wave : <strong className="text-ink-900">{WAVE_NUMBER}</strong>
                   </li>
                   <li>
                     Moov Money :{" "}
@@ -137,22 +140,17 @@ export default function GuestOrderPage() {
                   </li>
                 </ul>
               </li>
-              <li>Prenez une capture d'écran de la confirmation.</li>
+              <li>Prenez une capture d'ecran de la confirmation.</li>
               <li>
-                Envoyez-la nous sur WhatsApp en précisant votre numéro de
+                Envoyez-la nous sur WhatsApp en precisant votre numero de
                 commande.
               </li>
               <li>
-                Une fois le paiement vérifié, vous pourrez télécharger votre
+                Une fois le paiement verifie, vous pourrez telecharger votre
                 fichier sur cette page.
               </li>
             </ol>
-            <a>
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-center bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
-            >
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="block text-center bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
               Envoyer ma preuve sur WhatsApp
             </a>
           </div>
