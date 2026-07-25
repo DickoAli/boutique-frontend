@@ -358,3 +358,60 @@ export async function fetchCategories() {
 
   return res.json();
 }
+export async function createGuestOrder(
+  productId: number,
+  guestName: string,
+  guestPhone: string,
+  promoCode?: string
+) {
+  const res = await fetch(`${API_URL}/guest-orders`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      product_id: productId,
+      guest_name: guestName,
+      guest_phone: guestPhone,
+      promo_code: promoCode || undefined,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Erreur lors de la creation de la commande");
+  }
+
+  return data;
+}
+
+export async function fetchGuestOrder(orderNumber: string) {
+  const res = await fetch(`${API_URL}/guest-orders/${orderNumber}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Commande introuvable");
+  }
+
+  return res.json();
+}
+
+export async function requestGuestDownloadLink(
+  orderNumber: string,
+  productId: number
+) {
+  const res = await fetch(
+    `${API_URL}/guest-orders/${orderNumber}/download/${productId}`
+  );
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Erreur lors de la generation du lien");
+  }
+
+  return data;
+}

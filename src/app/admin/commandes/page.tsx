@@ -10,6 +10,8 @@ type Order = {
   total: string;
   status: string;
   created_at: string;
+  guest_name?: string;
+  guest_phone?: string;
   user?: { name: string; email: string };
 };
 
@@ -66,7 +68,10 @@ export default function AdminCommandesPage() {
                 {order.order_number}
               </p>
               <p className="text-ink-500 text-sm">
-                {order.user?.name} — {order.total} FCFA
+                {order.user?.name || order.guest_name || "Client invité"}
+                {order.guest_phone && ` — ${order.guest_phone}`}
+                {" — "}
+                {order.total} FCFA
               </p>
               <p className="text-ink-400 text-xs">
                 {new Date(order.created_at).toLocaleDateString("fr-FR")}

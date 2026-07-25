@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { fetchProduct } from "@/lib/api";
-import AddToCartButton from "@/components/AddToCartButton";
+import BuyNowForm from "@/components/BuyNowForm";
 
 export async function generateMetadata({
   params,
@@ -49,7 +49,7 @@ export default async function ProductPage({
             {product.description}
           </p>
         )}
-        <AddToCartButton productId={product.id} />
+        <BuyNowForm productId={product.id} />
       </div>
     </main>
   );
