@@ -22,7 +22,7 @@ type Order = {
 
 const WAVE_NUMBER = process.env.NEXT_PUBLIC_WAVE_NUMBER;
 const MOOV_NUMBER = process.env.NEXT_PUBLIC_MOOV_NUMBER;
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+const WHATSAPP_LINK = process.env.NEXT_PUBLIC_WHATSAPP_LINK;
 
 export default function GuestOrderPage() {
   const params = useParams();
@@ -71,7 +71,7 @@ export default function GuestOrderPage() {
   const whatsappMessage = encodeURIComponent(
     `Bonjour, je viens d'effectuer le paiement pour la commande ${order.order_number} (${order.total} FCFA). Voici ma preuve de paiement :`
   );
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+  const whatsappUrl = `${WHATSAPP_LINK}?text=${whatsappMessage}`;
 
   return (
     <main className="max-w-2xl mx-auto px-4 py-10">
@@ -147,7 +147,7 @@ export default function GuestOrderPage() {
                 fichier sur cette page.
               </li>
             </ol>
-            <a
+            <a>
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
